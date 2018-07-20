@@ -36,7 +36,7 @@ export default class extends React.Component<{}, {}> {
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight;
     const footerHeight = 460;
-    const progress = scrollPosition / (windowHeight - footerHeight) * 100;
+    const progress = (scrollPosition / (windowHeight - footerHeight)) * 100;
     (
       document.getElementById('progress') || { style: { width: 0 } }
     ).style.width = `${progress}%`;

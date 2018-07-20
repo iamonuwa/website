@@ -23,6 +23,19 @@ injectGlobal`
     transition: 250ms;
   }
 }
+.ant-select-dropdown-menu-item:hover {
+  background-color: #e6f7ff !important;
+}
+.ant-select-dropdown-menu-item-disabled:hover {
+  background-color: #fff !important;
+}
+.ant-select-dropdown-menu-item-selected,
+.ant-select-dropdown-menu-item-selected:hover {
+  background-color: #fafafa !important;
+}
+.ant-select-dropdown-menu-item-active {
+  background-color: #e6f7ff !important;
+}
 `;
 
 const MarketHeader = styled.h2`

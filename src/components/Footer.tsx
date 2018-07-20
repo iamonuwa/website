@@ -171,6 +171,14 @@ class MarketFooter extends React.Component {
               </FooterLink>
               <FooterLink>
                 <Link
+                  to="/presale"
+                  style={{ color: 'inherit', textDecoration: 'none' }}
+                >
+                  Pre-Sale
+                </Link>
+              </FooterLink>
+              <FooterLink>
+                <Link
                   to="https://docs.marketprotocol.io/#faq-general"
                   target="_blank"
                   style={{ color: 'inherit', textDecoration: 'none' }}

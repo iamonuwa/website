@@ -136,6 +136,10 @@ export default {
         component: 'src/containers/Jobs'
       },
       {
+        path: '/presale',
+        component: 'src/containers/Presale'
+      },
+      {
         path: '/blog',
         component: 'src/containers/Blog',
         getData: () => blogData,
