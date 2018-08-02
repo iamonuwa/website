@@ -17,6 +17,9 @@ export const StyledSelect = styled(Select)`
   .ant-select-selection {
     background: #f6f6f6 !important;
   }
+  .ant-select-selection__clear {
+    background-color: #f6f6f6 !important;
+  }
 `;
 
 export const DisclaimerText = styled('p')`
@@ -130,15 +133,18 @@ class PresaleForm extends React.Component<FormComponentProps> {
                   initialValue: 'yes',
                   rules: [
                     {
-                      validator: (rule, value, callback) =>
-                        investorValidator(form, rule, value, callback)
+                      validator: (rule, value, callback) => {
+                        investorValidator(form, rule, value, callback);
+                      }
                     }
                   ]
                 })(
                   <RadioGroup
                     name="ACCRED"
                     onChange={() => {
-                      form.validateFields(['ACCRED'], { force: true });
+                      setTimeout(() => {
+                        form.validateFields(['ACCRED'], { force: true });
+                      }, 10);
                     }}
                   >
                     <Radio value="yes">Yes</Radio>
@@ -184,8 +190,9 @@ class PresaleForm extends React.Component<FormComponentProps> {
                       required: true
                     },
                     {
-                      validator: (rule, value, callback) =>
-                        investorValidator(form, rule, value, callback)
+                      validator: (rule, value, callback) => {
+                        investorValidator(form, rule, value, callback);
+                      }
                     }
                   ]
                 })(
@@ -195,7 +202,6 @@ class PresaleForm extends React.Component<FormComponentProps> {
                     }}
                     showSearch={true}
                     defaultActiveFirstOption={false}
-                    allowClear={true}
                     dropdownStyle={{ backgroundColor: '#f6f6f6' }}
                     dropdownMenuStyle={{ backgroundColor: '#f6f6f6' }}
                     optionFilterProp="children"
@@ -203,7 +209,9 @@ class PresaleForm extends React.Component<FormComponentProps> {
                       return option.props.children.indexOf(inputValue) >= 0;
                     }}
                   >
-                    {countries.map(c => <Option key={c.code}>{c.name}</Option>)}
+                    {countries.map(c => (
+                      <Option key={c.code}>{c.name}</Option>
+                    ))}
                   </StyledSelect>
                 )}
               </FormItem>

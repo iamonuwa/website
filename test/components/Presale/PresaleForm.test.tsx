@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router';
 import { mount } from 'enzyme';
 import { Form, Input } from 'antd';
 
-import PresaleForm, { PresaleWrapper, DisclaimerText } from '@components/Presale/PresaleForm';
+import PresaleForm from '@components/Presale/PresaleForm';
 
 
 describe('<PresaleForm />', () => {
@@ -42,17 +42,5 @@ describe('<PresaleForm />', () => {
             .props().type
         ).toEqual('text');
       });
-  
-      it('indicates an checkbox error', () => {
-        component.find('form').simulate('submit');
-        expect(
-          component
-            .find('.ant-form-explain')
-            .last()
-            .text()
-        ).toEqual('Please check this option to continue');
-      });
-    });
-  
   });
   
