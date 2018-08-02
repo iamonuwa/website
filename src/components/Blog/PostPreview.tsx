@@ -1,8 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import Moment from 'react-moment';
 import Dotdotdot from 'react-dotdotdot';
-import Markdown from 'react-markdown';
 import showdown from 'showdown';
 import { History } from 'history';
 import { device } from '@src/breakpoints';
@@ -135,13 +134,13 @@ interface PostPreviewProps {
 }
 
 class PostPreview extends React.Component<PostPreviewProps> {
-  createMarkup(body: object, markup: object) {
+  static createMarkup(body: object, markup: HTMLElement) {
     const content = [];
     const sibling = body.firstElementChild.nextElementSibling;
     const textLength = 177;
     content.push(markup);
 
-    if (markup.innerText.length <= textLength) {
+    if (markup.textContent.length <= textLength) {
       if (sibling.innerText.length >= textLength) {
         sibling.innerText = sibling.innerText.substring(0, textLength) + '...';
       } else {
@@ -150,7 +149,7 @@ class PostPreview extends React.Component<PostPreviewProps> {
 
       content.push(sibling);
     } else {
-      markup.innerText = markup.innerText.substring(0, textLength) + '...';
+      markup.textContent = markup.textContent.substring(0, textLength) + '...';
     }
 
     return content.length > 1
@@ -159,7 +158,7 @@ class PostPreview extends React.Component<PostPreviewProps> {
   }
 
   render() {
-    const { post, featured } = this.props;
+    const { post, featured, history } = this.props;
 
     if (!post) {
       return null;
@@ -170,7 +169,7 @@ class PostPreview extends React.Component<PostPreviewProps> {
     const html = parser.parseFromString(htmlString, 'text/html');
     const intro = html.body.firstElementChild;
 
-    const markup = this.createMarkup(html.body, intro);
+    const markup = PostPreview.createMarkup(html.body, intro as HTMLElement);
 
     return (
       <RootWrap onClick={() => history.push(`/blog/post/${post.data.slug}`)}>
